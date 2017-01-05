@@ -20,7 +20,13 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/js/jquery-3.1.1.min.js",
+        "assets/js/jquery-ui.min.js",
+        "assets/js/bootstrap.min.js",
+        "assets/js/perfect-scrollbar.jquery.min.js",
+        "assets/js/material.min.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
