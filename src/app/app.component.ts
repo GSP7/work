@@ -1,19 +1,22 @@
-import { Component,Input, Output,EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app works!';
 
-  isCollapse:boolean = false;
+  isCollapse: boolean = false;
 
-  collapseSidebar(collapse){
+  collapseSidebar(collapse) {
     this.isCollapse = collapse;
-
-    console.log("COLLAPSE:"+ collapse);
+    console.log("COLLAPSE:" + collapse);
   }
-  
+
+  ngOnInit(){
+     $.material.init();
+  }
 }

@@ -18,6 +18,8 @@ import * as page from './pages/index';
 const appRoutes: Routes = [
     {path:'', redirectTo:'home',pathMatch:'full'},
     {path:'home',component: page.TestRouteComponent},
+
+    // not found jump to ...
     {path:'**',component: page.TestRouteComponent}
 ]
 
