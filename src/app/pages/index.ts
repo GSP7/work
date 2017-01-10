@@ -1,0 +1,1 @@
+export * from './test-route/test-route.component';

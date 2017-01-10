@@ -1,5 +1,7 @@
 import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 declare var $: any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',

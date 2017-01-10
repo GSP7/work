@@ -1,4 +1,5 @@
 import { Component, OnInit, Input,ElementRef } from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import menuData from '../../../data/menus';
 declare var $: any;
 
@@ -33,7 +34,7 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        $(this.nav).find('.sidebar .sidebar-wrapper').perfectScrollbar();
+        //$(this.nav).find('.sidebar .sidebar-wrapper').perfectScrollbar();
     }
 
     setSubmenuHeight() {

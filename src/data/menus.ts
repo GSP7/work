@@ -7,58 +7,62 @@ const Menus = [
     },{
         "text":"Pages",
         "code":"pages",
-        "link":"",
+        "link":"/pages",
         "icon":"pages",
         "submenu":[
             {
+                "code":"Pricing",
                 "text":"Pricing",
-                "link":""
+                "link":"/Pricing"
             },{
+                "code":"Timeline",
                 "text":"Timeline",
-                "link":""
+                "link":"/Timeline"
             },{
+                "code":"LoginPage",
                 "text":"Login Page",
-                "link":""
+                "link":"/Login"
             },{
+                "code":"Register",
                 "text":"Register Page",
-                "link":""
+                "link":"/Register"
             }
 
         ]
     },{
         "text":"Components",
         "code":"Components",
-        "link":"",
+        "link":"/Components",
         "icon":"apps"
     },{
         "text":"Forms",
         "code":"Forms",
-        "link":"",
+        "link":"/Forms",
         "icon":"content_paste"
     },{
         "text":"Tables",
         "code":"Tables",
-        "link":"",
+        "link":"/Tables",
         "icon":"grid_on"
     },{
         "text":"Maps",
         "code":"maps",
-        "link":"",
+        "link":"/Maps",
         "icon":"place"
     },{
         "text":"Widgets",
         "code":"widgets",
-        "link":"",
+        "link":"/Widgets",
         "icon":"widgets"
     },{
         "text":"Charts",
         "code":"charts",
-        "link":"",
+        "link":"/charts",
         "icon":"timeline"
     },{
         "text":"Calendar",
         "code":"Calendar",
-        "link":"",
+        "link":"/Calendar",
         "icon":"date_range"
     }
 
