@@ -1,8 +1,8 @@
 
-<app-sidebar [sidebarMin]="isCollapse"></app-sidebar>
+<app-sidebar [sidebarMin]="isCollapse" [bgColor]="sidebarBgColor" [menuActiveColor]="menuActiveColor"></app-sidebar>
 
 <div class="main-panel">
-  <app-header (onChangeSidebar)="collapseSidebar($event)"></app-header>
+  <app-header [sidebar_mini_active]="isCollapse" (onChangeSidebar)="collapseSidebar($event)"></app-header>
 
   <div class="content">
        <div class="container-fluid">
@@ -16,4 +16,11 @@
   <app-footer></app-footer>
 </div>
 
-<app-fixed-plugin></app-fixed-plugin>
+<app-fixed-plugin [currentBgColor]="sidebarBgColor" 
+    [IsMini]="isCollapse" 
+    (onChangeSidebar)="collapseSidebar($event)"
+    (onChangeSidebarBgColor) = "ChangeSidebarBgColor($event)"
+    [currentMenuColor] = "menuActiveColor"
+    (onChangeSidebarMenuColor) = "ChangeSidebarMenuColor($event)"
+    >
+</app-fixed-plugin>

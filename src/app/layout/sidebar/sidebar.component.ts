@@ -15,6 +15,9 @@ export class SidebarComponent implements OnInit {
 
     nav:any;
 
+    @Input() bgColor:string;
+    @Input() menuActiveColor:string;
+
     @Input() 
     set sidebarMin(val:boolean){
         this._min = val;

@@ -6,34 +6,43 @@
             <ul class="dropdown-menu">
                 <li class="header-title"> Sidebar Filters</li>
                 <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger active-color">
-                        <div class="badge-colors text-center">
-                            <span class="badge filter badge-purple" data-color="purple"></span>
-                            <span class="badge filter badge-blue" data-color="blue"></span>
-                            <span class="badge filter badge-green" data-color="green"></span>
-                            <span class="badge filter badge-orange" data-color="orange"></span>
-                            <span class="badge filter badge-red" data-color="red"></span>
-                            <span class="badge filter badge-rose active" data-color="rose"></span>
+                    <a href="javascript:void(0)" class="switch-trigger active-color"  (click)="stopPropagation()">
+                        <div class="badge-colors text-center" >
+
+                            <span  *ngFor="let item of colors" 
+                                class="badge filter badge-{{item}}" [ngClass]="currentMenuColor==item ?'active':''"
+                                (click)="changeMenuColor(item)" ></span>
+
                         </div>
                         <div class="clearfix"></div>
                     </a>
                 </li>
                 <li class="header-title">Sidebar Background</li>
                 <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger background-color">
+                    <a href="javascript:void(0)" class="switch-trigger background-color"  (click)="stopPropagation()">
                         <div class="text-center">
-                            <span class="badge filter badge-white" data-color="white"></span>
-                            <span class="badge filter badge-black active" data-color="black"></span>
+                            <span [ngClass]="{badge:true,
+                                                filter:true, 
+                                                'badge-white':true,
+                                                active: currentBgColor == 'white'}" data-color="white"
+                                   (click)="changeBgColor('white')"
+                                   ></span>
+                            <span [ngClass]="{badge:true,
+                                                filter:true, 
+                                                'badge-black':true,
+                                                active: currentBgColor == 'black'}" data-color="black"
+                                    (click)="changeBgColor('black')"
+                                    ></span>
                         </div>
                         <div class="clearfix"></div>
                     </a>
                 </li>
                 <li class="adjustments-line">
-                    <a href="javascript:void(0)" class="switch-trigger" (click)="changeSidebar()">
+                    <a href="javascript:void(0)" class="switch-trigger"   (click)="stopPropagation()">
                         <p>Sidebar Mini</p>
                         <div class="togglebutton switch-sidebar-mini">
                             <label>
-                                <input type="checkbox" unchecked="">
+                                <input type="checkbox" [checked]="IsMini" #sidebarmini (change)="toggleSidebar(sidebarmini)">
                             </label>
                         </div>
                         <div class="clearfix"></div>
