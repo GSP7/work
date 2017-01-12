@@ -11,6 +11,8 @@ export class AppComponent implements OnInit {
   sidebarBgColor:string = "white";
   menuActiveColor:string = "rose";
   isCollapse: boolean = false;
+  bgImgUrl:string  = '';
+  enableBgImg:boolean = true;
 
   collapseSidebar(collapse) {
     this.isCollapse = collapse;
@@ -25,6 +27,14 @@ export class AppComponent implements OnInit {
     this.menuActiveColor = c;
   }
 
+  ChangeSidebarBgImg(img){
+    this.bgImgUrl = img;
+    console.log(img);
+  }
+
+  UseBgImg(isUsebgImg){
+    this.enableBgImg = isUsebgImg;
+  }
   ngOnInit(){
      $.material.init();
   }

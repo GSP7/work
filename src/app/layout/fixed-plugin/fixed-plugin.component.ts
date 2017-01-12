@@ -10,10 +10,14 @@ export class FixedPluginComponent implements OnInit {
 
 	colors:string[] = [ 'purple','blue','green','orange','red','rose' ];
 	sidebar_mini_active:boolean = false;
-
-  	constructor() { }
+	bgImgs:string[] = [];
+	currentBgimg:string = 'sidebar-1.jpg';
+	constructor() { 
+		this.bgImgs = this.buildBgimgs();
+	}
 
 	@Input() IsMini:boolean = false;
+	@Input() userBgImg:boolean = true;
 	// 侧边栏背景色
 	@Input() currentBgColor:string = 'white';
 	@Input() currentMenuColor:string = 'rose';
@@ -21,6 +25,8 @@ export class FixedPluginComponent implements OnInit {
    	@Output() onChangeSidebar = new EventEmitter();
 	@Output() onChangeSidebarBgColor = new EventEmitter();
 	@Output() onChangeSidebarMenuColor = new EventEmitter();
+	@Output() onChangeSidebarBgImg = new EventEmitter();
+	@Output() onUseBgImg = new EventEmitter();
 	changeSidebar(){
 		this.sidebar_mini_active = !this.sidebar_mini_active;
 	
@@ -73,5 +79,25 @@ export class FixedPluginComponent implements OnInit {
 		this.currentMenuColor = color;
 		this.onChangeSidebarMenuColor.emit(color);
 		console.log("Text Color :"+color);
+	}
+
+	buildBgimgs(){
+		let imgs = [];
+		for(let i=0;i<4;i++){
+			imgs.push("sidebar-"+(i+1)+".jpg");
+		}
+
+		return imgs;
+	}
+
+	changeBgImg(img){
+		this.currentBgimg = img;
+		this.onChangeSidebarBgImg.emit(img);
+		event.stopPropagation();
+	}
+
+	toggleBgImg($el){
+		let enableBgImg = $el.checked;
+		this.onUseBgImg.emit(enableBgImg);
 	}
 }

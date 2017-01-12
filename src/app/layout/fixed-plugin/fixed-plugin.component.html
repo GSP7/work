@@ -53,34 +53,20 @@
                         <p>Sidebar Image</p>
                         <div class="togglebutton switch-sidebar-image">
                             <label>
-                                <input type="checkbox" checked="">
+                                <input type="checkbox" [checked]="userBgImg" #chkbgimg (change)="toggleBgImg(chkbgimg)" >
                             </label>
                         </div>
                         <div class="clearfix"></div>
                     </a>
                 </li>
                 <li class="header-title">Images</li>
-                <li class="active">
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="" />
+                <li *ngFor="let item of bgImgs" (click)="changeBgImg(item)" [ngClass]="{active: currentBgimg == item}">
+                    <a class="img-holder switch-trigger" href="javascript:void(0)" >
+                        <img src="../assets/img/{{item}}" alt="" />
                     </a>
                 </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="" />
-                    </a>
-                </li>
-                <li>
-                    <a class="img-holder switch-trigger" href="javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="" />
-                    </a>
-                </li>
-                <li class="button-container">
+            
+                <!--<li class="button-container">
                     <div class="">
                         <a href="http://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-rose btn-block">Buy Now</a>
                     </div>
@@ -92,7 +78,7 @@
                 <li class="button-container">
                     <button id="twitter" class="btn btn-social btn-twitter btn-round"><i class="fa fa-twitter"></i> &middot; 45</button>
                     <button id="facebook" class="btn btn-social btn-facebook btn-round"><i class="fa fa-facebook-square"> &middot;</i>50</button>
-                </li>
+                </li>-->
             </ul>
         </div>
     </div>

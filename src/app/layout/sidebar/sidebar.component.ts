@@ -17,7 +17,8 @@ export class SidebarComponent implements OnInit {
 
     @Input() bgColor:string;
     @Input() menuActiveColor:string;
-
+    @Input() bgImgUrl:string;
+    @Input() enableBgImg:boolean;
     @Input() 
     set sidebarMin(val:boolean){
         this._min = val;

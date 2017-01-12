@@ -1,5 +1,9 @@
 
-<app-sidebar [sidebarMin]="isCollapse" [bgColor]="sidebarBgColor" [menuActiveColor]="menuActiveColor"></app-sidebar>
+<app-sidebar [sidebarMin]="isCollapse" [bgColor]="sidebarBgColor" 
+    [menuActiveColor]="menuActiveColor"
+    [enableBgImg] = "enableBgImg"
+    [bgImgUrl] = "bgImgUrl"
+  ></app-sidebar>
 
 <div class="main-panel">
   <app-header [sidebar_mini_active]="isCollapse" (onChangeSidebar)="collapseSidebar($event)"></app-header>
@@ -22,5 +26,7 @@
     (onChangeSidebarBgColor) = "ChangeSidebarBgColor($event)"
     [currentMenuColor] = "menuActiveColor"
     (onChangeSidebarMenuColor) = "ChangeSidebarMenuColor($event)"
+    (onUseBgImg) = "UseBgImg($event)"
+    (onChangeSidebarBgImg) = "ChangeSidebarBgImg($event)"
     >
 </app-fixed-plugin>
