@@ -13,7 +13,7 @@ export class TestRouteComponent implements OnInit {
   ngOnInit() {
      this.route.url.subscribe(url=> {
         this.url = url;
-     } )
+     });
   }
 
 }

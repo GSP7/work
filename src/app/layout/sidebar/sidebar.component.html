@@ -2,12 +2,12 @@
 
     <div class="logo">
         <a href="http://www.creative-tim.com" class="simple-text">
-            Creative Tim
+            ng2-GPS7
         </a>
     </div>
     <div class="logo logo-mini">
         <a href="http://www.creative-tim.com" class="simple-text">
-            Ct
+            G7
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -16,11 +16,11 @@
                 <img src="../assets/img/faces/avatar.jpg" />
             </div>
             <div class="info">
-                <a data-toggle="collapse" href="#collapseExample" class="collapsed">
+                <a data-toggle="collapse" href="#collapseExample" class="collapsed" >
                     Tania Andrew
                     <b class="caret"></b>
                 </a>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" id="collapseExample" >
                     <ul class="nav">
                         <li>
                             <a href="#">My Profile</a>
@@ -35,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <ul class="nav">
+        <ul class="nav" >
            
             <li *ngFor="let item of menuItems"  routerLinkActive="active">
                  <a *ngIf="!item.submenu || !item.submenu.length " [routerLink]="[item.link]" >

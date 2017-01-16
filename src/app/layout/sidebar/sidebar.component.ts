@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,ElementRef } from '@angular/core';
+import { Component, OnInit, Input,ElementRef,AfterViewInit } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import menuData from '../../../data/menus';
 declare var $: any;
@@ -9,7 +9,7 @@ declare var $: any;
     styleUrls: ['./sidebar.component.css']
 })
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit,AfterViewInit {
     menuItems:Array<any>;
     _min:boolean = false;
 
@@ -39,6 +39,20 @@ export class SidebarComponent implements OnInit {
 
     ngOnInit() {
         //$(this.nav).find('.sidebar .sidebar-wrapper').perfectScrollbar();
+        
+
+    }
+
+    ngAfterViewInit(){
+        var $collapse = $(this.nav).find('.sidebar .collapse');
+        var self = this;
+        $collapse.on('show.bs.collapse',function(){
+            if($(window).width() > 991 && self.sidebarMin){
+                return false;
+            } else{
+                return true;
+            }
+        })
     }
 
     setSubmenuHeight() {
@@ -47,4 +61,5 @@ export class SidebarComponent implements OnInit {
         }
     }
 
+   
 }
