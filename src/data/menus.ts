@@ -11,9 +11,9 @@ const Menus = [
         "icon":"pages",
         "submenu":[
             {
-                "code":"Pricing",
-                "text":"Pricing",
-                "link":"/Pricing"
+                "code":"dayofweek",
+                "text":"每日工作",
+                "link":"/week/task"
             },{
                 "code":"Timeline",
                 "text":"Timeline",

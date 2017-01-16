@@ -15,21 +15,21 @@ import { TestRouteComponent } from './pages/test-route/test-route.component';
 //import { LayoutComponent } from './layout/layout.component';
 import * as page from './pages/index';
 
-const appRoutes: Routes = [
-    {path:'', redirectTo:'home',pathMatch:'full'},
-    {path:'home',component: page.TestRouteComponent},
+// const appRoutes: Routes = [
+//     {path:'', redirectTo:'home',pathMatch:'full'},
+//     {path:'home',component: page.TestRouteComponent},
 
-    // not found jump to ...
-    {path:'**',component: page.TestRouteComponent}
-]
+//     // not found jump to ...
+//     {path:'**',component: page.TestRouteComponent}
+// ]
 
-
+import { AppRoutingModule } from './app.routes';
 @NgModule({
    imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
