@@ -1,6 +1,9 @@
 import { Component, OnInit, Input,ElementRef,AfterViewInit } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes, ActivatedRoute,Router,NavigationEnd} from '@angular/router';
 import menuData from '../../../data/menus';
+import * as _ from 'lodash';
+import 'rxjs/add/operator/pairwise';
+
 declare var $: any;
 
 @Component({
@@ -12,8 +15,9 @@ declare var $: any;
 export class SidebarComponent implements OnInit,AfterViewInit {
     menuItems:Array<any>;
     _min:boolean = false;
-
+    currUrl:string = '';
     nav:any;
+    expanded:boolean = false;
 
     @Input() bgColor:string;
     @Input() menuActiveColor:string;
@@ -30,17 +34,25 @@ export class SidebarComponent implements OnInit,AfterViewInit {
         return this._min;
     }
 
-    constructor(el:ElementRef) { 
-        this.menuItems = menuData;
-        this.nav = el.nativeElement;
+    constructor(el:ElementRef,
+        private route: ActivatedRoute,
+        private router: Router) { 
+            this.menuItems = menuData;
+            this.nav = el.nativeElement;
+           // console.log(this.route);
 
-        console.log(JSON.stringify(this.menuItems));
+            this.router.events.pairwise().subscribe((e) => {
+                console.log(e[1].url);
+                if(e[1] instanceof NavigationEnd){
+                     this.currUrl = e[1].url;
+                }
+            });
     }
 
     ngOnInit() {
         //$(this.nav).find('.sidebar .sidebar-wrapper').perfectScrollbar();
         
-
+        //console.log(this.router.url);
     }
 
     ngAfterViewInit(){
@@ -61,5 +73,13 @@ export class SidebarComponent implements OnInit,AfterViewInit {
         }
     }
 
-   
+    setExpanded(menus:Array<any>){
+        if(menus.length > 0){
+            let link = this.currUrl;
+            return _.size(_.find(menus,function(item){
+                return item.link === link;
+            })) > 0;
+        }
+        return false;
+    }
 }
