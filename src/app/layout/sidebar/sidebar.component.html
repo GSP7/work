@@ -42,16 +42,16 @@
                     <i class="material-icons">{{item.icon}}</i>
                     <p>{{item.text}}</p>
                 </a>
-                <a *ngIf=" item.submenu && item.submenu.length " data-toggle="collapse" href="#{{item.code}}">
+                <a *ngIf=" item.submenu && item.submenu.length " data-toggle="collapse" href="#{{item.code}}" [attr.aria-expanded]="setExpanded(item.submenu)">
                     <i class="material-icons">{{item.icon}}</i>
                     <p>{{item.text}}
                         <b class="caret" *ngIf="item.submenu && item.submenu.length" ></b>
                     </p>
                 </a>
     
-                <div class="collapse" id="{{item.code}}" *ngIf=" item.submenu && item.submenu.length " [ngStyle]="setSubmenuHeight()" >
+                <div class="collapse" [ngClass]="{in: setExpanded(item.submenu)}" id="{{item.code}}" *ngIf=" item.submenu && item.submenu.length " [ngStyle]="setSubmenuHeight()" >
                     <ul class="nav">
-                        <li *ngFor="let subItem of item.submenu" routerLinkActive="active">
+                        <li *ngFor="let subItem of item.submenu;" routerLinkActive="active">
                             <a [routerLink]="[subItem.link]" >{{subItem.text}}</a>
                         </li>
                     

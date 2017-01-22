@@ -30,10 +30,22 @@ const Menus = [
 
         ]
     },{
-        "text":"Components",
-        "code":"Components",
-        "link":"/Components",
-        "icon":"apps"
+        "text":"工作计划",
+        "code":"Gtasks",
+        "link":"/gtasks",
+        "icon":"apps",
+        "submenu": [
+            {
+                "code":"gtaskslist",
+                "text":"待办任务",
+                "link":"/gtasks/gtaskslist"
+            },
+            {
+                "code":"gtaskedit",
+                "text":"待办任务编辑",
+                "link":"/gtasks/gtasksedit"
+            }
+        ]
     },{
         "text":"Forms",
         "code":"Forms",

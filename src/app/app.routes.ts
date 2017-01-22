@@ -4,15 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import * as page from './pages/index';
 
 const routes = [
-    {path:'', redirectTo:'home',pathMatch:'full'},
-    {path:'home',component: page.TestRouteComponent},
-    {path: 'week', loadChildren: 'app/modules/week-work/week-work.module#WeekWorkModule' },
-    {path:'**',component: page.TestRouteComponent}
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: page.TestRouteComponent },
+  { path: 'week', loadChildren: 'app/modules/week-work/week-work.module#WeekWorkModule' },
+  { path: 'gtasks', loadChildren: 'app/modules/gtasks/gtasks.module#GTasksModule' },
+  { path: '**', component: page.TestRouteComponent }
 ]
 
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }
