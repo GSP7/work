@@ -23,7 +23,7 @@ export class WorkService {
       let obj = {
         "id": i+1,
         "category": work_category[this.GetRandomNum(0,work_category.length-1)],
-        "workdate":moment(new Date()).format('YYYY-MM-DD'),
+        "workdate":moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
         "project":"GSP7",
         "worktimes": this.GetRandomNum(1,3),
         "content":""
