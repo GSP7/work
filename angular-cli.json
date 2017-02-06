@@ -27,10 +27,7 @@
         "assets/js/bootstrap.min.js",
         "assets/js/perfect-scrollbar.jquery.min.js",
         "assets/js/material.min.js",
-<<<<<<< HEAD
         "assets/js/kendoui/kendo.all.min.js",
-=======
->>>>>>> 5b315c2304fc89c87622a161458340f37337d038
         "../node_modules/datatables.net/js/jquery.dataTables.js"
       ],
       "environments": {
