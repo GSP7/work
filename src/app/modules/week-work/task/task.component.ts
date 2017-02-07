@@ -3,7 +3,7 @@ import { ActivatedRoute,Router} from '@angular/router';
 import { DataTableDirective } from '../../../directive/datatables.directive';
 
 import {WorkService} from '../../../services/work.service';
-
+import * as moment from 'moment';
 declare var $:any;
 
 @Component({
@@ -19,7 +19,15 @@ export class TaskComponent implements OnInit,AfterViewInit {
   private datatableEl: DataTableDirective;
 
    dtOptions: any = {};
-   currentRow:any = {};
+   currentRow:any = {
+      "category": '',
+      "workdate":moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+      "project":"GSP7",
+      "worktimes": 0,
+      "content":""
+   };
+
+   
 
   constructor(
    private route: ActivatedRoute,
@@ -32,11 +40,13 @@ export class TaskComponent implements OnInit,AfterViewInit {
 
   ngOnInit(){
      $.material.init();
+     // We put modals out of wrapper to working properly
+    $('.modal').appendTo("body");
     //  this.route.url.subscribe(url=> console.log(url));
     var _data = this.workSer.getData().data;
     this.dtOptions = {
       responsive:true,
-      select: true,
+      select: 'single', // 单选
      
       data: _data,
       columns: [{
@@ -103,8 +113,14 @@ export class TaskComponent implements OnInit,AfterViewInit {
             self.currentRow = dt.rows( indexes ).data()[0];
             console.log(self.currentRow);
           }
+        }).on('deselect', function(){
+          self.currentRow = null;
         })
       });
+  }
+
+  canShowModal(){
+    return this.currentRow==null;
   }
 
 }
