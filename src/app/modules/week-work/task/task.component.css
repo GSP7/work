@@ -114,3 +114,10 @@ table.dataTable tbody td.selected a {
   color: #a2d4ed;
 }
 table.dataTable > tbody > tr > td{padding:12px 8px!important}
+
+.selectedRow{
+  background-color: #ea4c89!important;
+    color: #ffffff;
+    border-radius: 3px;
+   
+}

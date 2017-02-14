@@ -9,16 +9,16 @@
 
 				<div class="toolbar">
 				
-                    <button data-toggle="modal" data-target="#infoModal" class="btn btn-primary">
+                    <button data-toggle="modal" class="btn btn-primary" (click)="addNew()">
                         <i class="material-icons">add</i> 增加
                     </button>
-                    <button data-toggle="modal" data-target="#infoModal"  class="btn btn-primary btn-sm btn-simple" [disabled]="canShowModal()" >
+                    <button data-toggle="modal" data-target="#infoModal"  class="btn btn-primary btn-simple" [disabled]="canShowModal()" >
                         <i class="material-icons">mode_edit</i> 编辑
                     </button>
-                    <button class="btn btn-primary btn-sm btn-simple"  [disabled]="canShowModal()">
+                    <button class="btn btn-primary  btn-simple" (click)="delRow()" [disabled]="canShowModal()">
                         <i class="material-icons">delete_forever</i> 删除
                     </button>
-                    <button class="btn btn-primary btn-sm btn-simple">
+                    <button class="btn btn-primary btn-simple">
                         <i class="material-icons">search</i> 查询
                     </button>
                 </div>
@@ -48,32 +48,47 @@
                 <h5 class="modal-title" id="myModalLabel">详细信息-{{ currentRow |json }}</h5>
             </div>
             <div class="modal-body">
-                <form>
+                <form *ngIf="currentRow!=null">
                     <div class="form-group label-floating">
                         <label class="control-label">
-                            Email Address
+                            工作类别
                             <small>*</small>
                         </label>
-                        <input class="form-control"  name="email" type="email" required="true" />
+                        <input class="form-control"  name="category" [(ngModel)]="currentRow.category" type="text" required="true" />
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label">
-                            Password
+                            所属项目
                             <small>*</small>
                         </label>
-                        <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                        <input class="form-control" name="project" [(ngModel)]="currentRow.project" id="registerPassword" type="text" required="true" />
                     </div>
                     <div class="form-group label-floating">
                         <label class="control-label">
-                            Confirm Password
+                            工作时间
                             <small>*</small>
                         </label>
-                        <input class="form-control" name="password_confirmation" id="registerPasswordConfirmation" type="password" required="true" equalTo="#registerPassword" />
+                        <input class="form-control" name="workdate" [(ngModel)]="currentRow.workdate" id="registerPasswordConfirmation" type="text" required="true"  />
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">
+                            工作时长
+                            <small>*</small>
+                        </label>
+                        <input class="form-control" name="worktimes" [(ngModel)]="currentRow.worktimes" type="text" required="true" />
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label">
+                            工作内容
+                            <small>*</small>
+                        </label>
+                        <textarea  class="form-control" name="content" [(ngModel)]="currentRow.content" id="" cols="30" rows="10"></textarea>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer text-center">
-                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Sounds good!</button>
+            <div class="modal-footer text-right">
+                <button type="button" class="btn btn-primary" (click)="save()">保存</button>
+                <button type="button" class="btn btn-default " data-dismiss="modal">取消</button>
             </div>
         </div>
     </div>

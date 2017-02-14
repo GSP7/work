@@ -2,13 +2,14 @@ import { Component,ViewChild, OnInit,AfterViewInit,ViewEncapsulation } from '@an
 import { ActivatedRoute,Router} from '@angular/router';
 import { DataTableDirective } from '../../../directive/datatables.directive';
 
+import {SweetAlertService} from '../../../services/sweetalert.service';
 import {WorkService} from '../../../services/work.service';
 import * as moment from 'moment';
 declare var $:any;
 
 @Component({
   selector: 'app-task',
-  providers: [WorkService],
+  providers: [WorkService,SweetAlertService],
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css'],
   encapsulation:ViewEncapsulation.None
@@ -26,13 +27,14 @@ export class TaskComponent implements OnInit,AfterViewInit {
       "worktimes": 0,
       "content":""
    };
-
+   dt:any;
    
 
   constructor(
    private route: ActivatedRoute,
    private router: Router,
-   private workSer: WorkService
+   private workSer: WorkService,
+   private sweetalert:SweetAlertService
   ) { 
 	  
 
@@ -46,7 +48,10 @@ export class TaskComponent implements OnInit,AfterViewInit {
     var _data = this.workSer.getData().data;
     this.dtOptions = {
       responsive:true,
-      select: 'single', // 单选
+      select:{
+        style:'single',
+        className:'selectedRow'
+      }, // 单选
      
       data: _data,
       columns: [{
@@ -56,22 +61,26 @@ export class TaskComponent implements OnInit,AfterViewInit {
       }, {
         title: '工作类别',
         data: 'category',
-        width: 160
+        width: 160,
+        "defaultContent": "<i>Not set</i>"
       }, {
         title: '项目',
         data: 'project',
-        width: 160
+        width: 160,
+        "defaultContent": "<i>Not set</i>"
       },{
         title:'工作时间',
         data:'workdate',
-        width: 180
+        width: 180,
+        "defaultContent": "<i>Not set</i>"
       },{
         title:'工时',
         data:'worktimes',
-        width: 120
+        width: 120,
+        "defaultContent": "<i>Not set</i>"
       },{
         title:'工作内容',
-        data:'content'
+        data:'content',"defaultContent": "<i>Not set</i>"
       }],
       language:{
           "sProcessing":   "处理中...",
@@ -107,6 +116,7 @@ export class TaskComponent implements OnInit,AfterViewInit {
   ngAfterViewInit(){
       let self = this;
       this.datatableEl.dtInstance.then(dt =>{
+        self.dt = dt;
         $('.card .material-datatables label').addClass('form-group');
         dt.on('select', function(e,dt,type,indexes){
           if(type == 'row'){
@@ -123,4 +133,52 @@ export class TaskComponent implements OnInit,AfterViewInit {
     return this.currentRow==null;
   }
 
+  addNew(){
+    let self = this;
+    self.currentRow = {};
+
+    $('#infoModal').modal('show');
+  }
+
+  save(){
+    if(this.currentRow.id){
+      //console.log(this.dt.row());
+      //var rowData = this.dt.row().data();
+      this.dt.row('.selectedRow').data(this.currentRow).draw(false);
+    }else{
+      let id =  this.dt.rows().data().length + 1;
+      this.currentRow.id = id;
+      this.dt.row.add(this.currentRow).draw(false);
+      this.dt.page('last').draw('page');
+      this.dt.row("tr:contains("+id+")").select();
+     
+    }
+   
+    $('#infoModal').modal('hide');
+       
+  }
+
+  delRow(){
+    let self = this;
+    this.sweetalert.question({
+        title:'你确认要执行删除操作吗？',
+        text: "删除的后数据将不可恢复!请谨慎操作。",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        confirmButtonText: '删除它',
+        cancelButtonText:'取消',
+        buttonsStyling: false
+    }).then(function(){
+        self.dt.row().remove().draw();
+        self.sweetalert.success({
+                    title: '删除成功!',
+                    text: '',
+                    confirmButtonClass: "btn btn-success",
+                    buttonsStyling: false,
+                    confirmButtonText:' 确 定 '
+        })
+    });
+  }
 }
